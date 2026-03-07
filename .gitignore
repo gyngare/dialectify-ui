@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -14,10 +15,23 @@
 
 # production
 /build
+=======
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# environment variables — NEVER commit these
+.env.local
+.env*.local
+>>>>>>> ab30524 (Initialize dialectify)
 
 # misc
 .DS_Store
 *.pem
+<<<<<<< HEAD
 
 # debug
 npm-debug.log*
@@ -34,3 +48,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+=======
+npm-debug.log*
+>>>>>>> ab30524 (Initialize dialectify)
