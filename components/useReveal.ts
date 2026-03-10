@@ -9,18 +9,22 @@ export function useReveal() {
     const el = ref.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("visible");
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-    );
+    // Small delay ensures DOM is fully painted before observing
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.classList.add("visible");
+            observer.unobserve(el);
+          }
+        },
+        { threshold: 0.05, rootMargin: "0px 0px 0px 0px" },
+      );
 
-    observer.observe(el);
-    return () => observer.disconnect();
+      observer.observe(el);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return ref;

@@ -42,10 +42,22 @@ export default function Navbar() {
               onClick={() => scrollTo(id)}
               className="text-brand-muted text-sm font-medium hover:text-brand-blue-mid transition-colors capitalize bg-transparent border-none cursor-pointer"
             >
-              {id === "usecases" ? "Use Cases" : id === "how" ? "How It Works" : "Mission"}
+              {id === "usecases"
+                ? "Use Cases"
+                : id === "how"
+                  ? "How It Works"
+                  : "Mission"}
             </button>
           </li>
         ))}
+        <li>
+          <a
+            href="/about"
+            className="text-brand-muted text-sm font-medium hover:text-brand-blue-mid transition-colors"
+          >
+            About
+          </a>
+        </li>
         <li>
           <button
             onClick={() => scrollTo("waitlist")}
@@ -62,9 +74,15 @@ export default function Navbar() {
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle menu"
       >
-        <span className={`block w-6 h-0.5 bg-brand-text transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-        <span className={`block w-6 h-0.5 bg-brand-text transition-opacity duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-        <span className={`block w-6 h-0.5 bg-brand-text transition-transform duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+        <span
+          className={`block w-6 h-0.5 bg-brand-text transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+        />
+        <span
+          className={`block w-6 h-0.5 bg-brand-text transition-opacity duration-300 ${menuOpen ? "opacity-0" : ""}`}
+        />
+        <span
+          className={`block w-6 h-0.5 bg-brand-text transition-transform duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+        />
       </button>
 
       {/* Mobile menu */}
@@ -77,9 +95,19 @@ export default function Navbar() {
                 onClick={() => scrollTo(id)}
                 className="text-brand-muted text-sm font-medium text-left bg-transparent border-none cursor-pointer hover:text-brand-blue-mid transition-colors"
               >
-                {id === "usecases" ? "Use Cases" : id === "how" ? "How It Works" : "Mission"}
+                {id === "usecases"
+                  ? "Use Cases"
+                  : id === "how"
+                    ? "How It Works"
+                    : "Mission"}
               </button>
             ))}
+            <a
+              href="/about"
+              className="text-brand-muted text-sm font-medium hover:text-brand-blue-mid transition-colors"
+            >
+              About
+            </a>
             <button
               onClick={() => scrollTo("waitlist")}
               className="bg-brand-grad text-white px-5 py-3 rounded-lg text-sm font-semibold border-none cursor-pointer text-center"
