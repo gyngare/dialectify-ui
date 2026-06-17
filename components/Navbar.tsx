@@ -52,10 +52,26 @@ export default function Navbar() {
         ))}
         <li>
           <a
+            href="/translate"
+            className="text-brand-blue-mid text-sm font-bold hover:opacity-80 transition-opacity border border-brand-blue-mid/30 px-3 py-1.5 rounded-lg"
+          >
+            Try Translator
+          </a>
+        </li>
+        <li>
+          <a
             href="/about"
             className="text-brand-muted text-sm font-medium hover:text-brand-blue-mid transition-colors"
           >
             About
+          </a>
+        </li>
+        <li>
+          <a
+            href="/contribute"
+            className="text-brand-muted text-sm font-medium hover:text-brand-blue-mid transition-colors"
+          >
+            Contribute
           </a>
         </li>
         <li>
