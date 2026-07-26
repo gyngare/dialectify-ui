@@ -9,5 +9,6 @@ export default function Footer() {
       </p>
       <p className="text-xs text-white/30">Starting in Indonesia 🇮🇩</p>
     </footer>
+    // This is a test
   );
 }
