@@ -23,6 +23,8 @@ const config: Config = {
       fontFamily: {
         jakarta: ["var(--font-jakarta)", "sans-serif"],
         dm:      ["var(--font-dm)",      "sans-serif"],
+        plex:    ["var(--font-plex)",    "sans-serif"],
+        "plex-mono": ["var(--font-plex-mono)", "monospace"],
       },
       backgroundImage: {
         "brand-gradient": "linear-gradient(135deg, #2563c4 0%, #4fa3e8 100%)",
