@@ -8,19 +8,19 @@
 import { formatRpShort } from "./format";
 import type { FeeLine, FeeResult } from "./shopee-fees";
 
-type Fonts = { sans: string; mono: string };
+export type Fonts = { sans: string; mono: string };
 
-const W = 1080;
-const H = 1350;
-const PAD = 80;
+export const W = 1080;
+export const H = 1350;
+export const PAD = 80;
 
 // Surfaces and text (M3 dark roles)
-const BG = "#0e0f12"; // surface
-const CONTAINER = "#1a1c21"; // surface-container
-const CONTAINER_HI = "#24272e"; // surface-container-high
-const ON = "#f1f2f6"; // on-surface
-const ON_VAR = "#a9aebb"; // on-surface-variant
-const OUTLINE = "#3a3e47";
+export const BG = "#0e0f12"; // surface
+export const CONTAINER = "#1a1c21"; // surface-container
+export const CONTAINER_HI = "#24272e"; // surface-container-high
+export const ON = "#f1f2f6"; // on-surface
+export const ON_VAR = "#a9aebb"; // on-surface-variant
+export const OUTLINE = "#3a3e47";
 const ACCENT = "#ff9e7a"; // the number
 
 // Fee colours, tone ~80 on dark
@@ -78,27 +78,7 @@ export async function renderShareImage(
   ctx.fillStyle = BG;
   ctx.fillRect(0, 0, W, H);
 
-  /* ---------- Header: logo + chip ---------- */
-  const headY = 72;
-  ctx.save();
-  ctx.translate(PAD, headY);
-  ctx.scale(48 / 120, 48 / 120);
-  roundRect(ctx, 0, 0, 120, 120, 28);
-  ctx.fillStyle = "#2f6fd6";
-  ctx.fill();
-  ctx.fillStyle = "rgba(255,255,255,0.92)";
-  ctx.fill(new Path2D(LOGO_BUBBLE));
-  ctx.beginPath();
-  ctx.arc(76, 52, 7, 0, Math.PI * 2);
-  ctx.fillStyle = "#2f6fd6";
-  ctx.fill();
-  ctx.restore();
-
-  ctx.fillStyle = ON;
-  ctx.font = `600 34px ${fonts.sans}`;
-  ctx.fillText("dialectify", PAD + 64, headY + 36);
-
-  chip(ctx, fonts, "Kalkulator biaya Shopee", W - PAD, headY + 4, "right", "outline");
+  drawBrandHeader(ctx, fonts, "Kalkulator biaya Shopee");
 
   /* ---------- Headline ---------- */
   let y = 250;
@@ -233,7 +213,31 @@ export async function renderShareImage(
 
 /* ---------------------------------------------------------------- helpers */
 
-function chip(
+/** Logo, wordmark and an outline chip on the right. Shared with the rank card. */
+export function drawBrandHeader(ctx: CanvasRenderingContext2D, fonts: Fonts, chipText: string) {
+  const headY = 72;
+  ctx.save();
+  ctx.translate(PAD, headY);
+  ctx.scale(48 / 120, 48 / 120);
+  roundRect(ctx, 0, 0, 120, 120, 28);
+  ctx.fillStyle = "#2f6fd6";
+  ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.92)";
+  ctx.fill(new Path2D(LOGO_BUBBLE));
+  ctx.beginPath();
+  ctx.arc(76, 52, 7, 0, Math.PI * 2);
+  ctx.fillStyle = "#2f6fd6";
+  ctx.fill();
+  ctx.restore();
+
+  ctx.fillStyle = ON;
+  ctx.font = `600 34px ${fonts.sans}`;
+  ctx.fillText("dialectify", PAD + 64, headY + 36);
+
+  chip(ctx, fonts, chipText, W - PAD, headY + 4, "right", "outline");
+}
+
+export function chip(
   ctx: CanvasRenderingContext2D,
   fonts: Fonts,
   text: string,
@@ -265,7 +269,7 @@ function chip(
   ctx.fillText(text, left + padX, y + h / 2 + (style === "filled" ? 10 : 9));
 }
 
-function drawTracked(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, tracking: number) {
+export function drawTracked(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, tracking: number) {
   let cx = x;
   for (const ch of text) {
     ctx.fillText(ch, cx, y);
@@ -273,7 +277,7 @@ function drawTracked(ctx: CanvasRenderingContext2D, text: string, x: number, y: 
   }
 }
 
-function fitText(ctx: CanvasRenderingContext2D, text: string, max: number) {
+export function fitText(ctx: CanvasRenderingContext2D, text: string, max: number) {
   if (ctx.measureText(text).width <= max) return text;
   let t = text;
   while (t.length > 1 && ctx.measureText(`${t}…`).width > max) t = t.slice(0, -1);
@@ -295,7 +299,7 @@ function allocate(shares: number[], total: number): number[] {
   return out;
 }
 
-function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+export function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
   ctx.arcTo(x + w, y, x + w, y + h, r);
